@@ -1,0 +1,322 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f6fa;
+    color: #243247;
+}
+
+a {
+    color: #126b78;
+}
+
+h1 {
+    margin-top: 0;
+    color: #243247;
+}
+
+p {
+    color: #718096;
+}
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background: #126b78;
+    color: white;
+    padding: 28px 20px;
+    flex-shrink: 0;
+}
+
+.sidebar h2 {
+    font-size: 28px;
+    margin-bottom: 45px;
+}
+
+.sidebar p {
+    color: #c7e8ed;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    border-radius: 8px;
+    margin: 8px 0;
+}
+
+.sidebar a:hover {
+    background: #ffffff22;
+}
+
+.content {
+    flex: 1;
+    min-width: 0;
+    padding: 40px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin: 30px 0;
+}
+
+.stat, .panel {
+    background: white;
+    padding: 28px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.stat h3 {
+    color: #718096;
+    font-size: 17px;
+}
+
+.stat strong {
+    font-size: 38px;
+    color: #126b78;
+}
+
+.page {
+    max-width: 1250px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn, button {
+    display: inline-block;
+    background: #126b78;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btn:hover, button:hover {
+    background: #0d5260;
+}
+
+.btn.small, button.small {
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
+.danger {
+    background: #dc3545;
+}
+
+.danger:hover {
+    background: #b42332;
+}
+
+.inline-form {
+    display: inline-block;
+    margin: 4px;
+}
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 25px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background: #f1f5f9;
+    color: #59697e;
+}
+
+.form-card {
+    max-width: 650px;
+    margin: 50px auto;
+    padding: 35px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 8px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    background: white;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.search-form input {
+    flex: 1;
+}
+
+.search-form a {
+    white-space: nowrap;
+}
+
+.form-card button {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.status-form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.status-form select {
+    min-width: 125px;
+}
+
+.status-form button {
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .page {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    .search-form {
+        flex-wrap: wrap;
+    }
+}
+
+/* Appointment Status and Update Button */
+
+.status-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+
+.status-form select {
+    width: 150px;
+    min-width: 150px;
+    padding: 10px;
+    margin: 0;
+}
+
+.status-form button {
+    width: auto;
+    margin: 0;
+    padding: 10px 18px;
+    white-space: nowrap;
+}
+
+/* Medical Records Form */
+
+.medical-container {
+    max-width: 750px;
+    margin: 40px auto;
+    padding: 35px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.medical-container h1 {
+    color: #243247;
+    margin-bottom: 10px;
+}
+
+.medical-container label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 7px;
+    font-weight: 600;
+}
+
+.medical-container input,
+.medical-container select,
+.medical-container textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d5dce5;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.medical-container textarea {
+    min-height: 90px;
+}
+
+.medical-container button {
+    margin-top: 25px;
+    padding: 13px 25px;
+    background: #116b78;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}

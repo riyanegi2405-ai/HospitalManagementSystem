@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Bill - MediCare</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .edit-container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #176b87;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 16px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 24px;
+            padding: 13px;
+            background: #176b87;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #12566d;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #176b87;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="edit-container">
+
+        <h2>Edit Patient Bill</h2>
+
+        <form method="POST"
+              action="{{ url_for('edit_bill', bill_id=bill['id']) }}">
+
+            <label for="bill_date">Bill Date *</label>
+            <input
+                type="date"
+                name="bill_date"
+                id="bill_date"
+                value="{{ bill['bill_date'] }}"
+                required
+            >
+
+            <label for="description">Bill Description *</label>
+            <textarea
+                name="description"
+                id="description"
+                rows="3"
+                required
+            >{{ bill['description'] }}</textarea>
+
+            <label for="amount">Amount (₹) *</label>
+            <input
+                type="number"
+                name="amount"
+                id="amount"
+                min="0.01"
+                step="0.01"
+                value="{{ bill['amount'] }}"
+                required
+            >
+
+            <button type="submit">
+                Update Bill
+            </button>
+
+        </form>
+
+        <a href="{{ url_for('bills') }}" class="back-link">
+            Back to Billing List
+        </a>
+
+    </div>
+
+</body>
+</html>

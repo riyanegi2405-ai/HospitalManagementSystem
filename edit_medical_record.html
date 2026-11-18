@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Medical Record - MediCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        .edit-record-container {
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 35px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .edit-record-container h2 {
+            color: #243247;
+            margin-bottom: 25px;
+        }
+
+        .edit-record-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .edit-record-form label {
+            font-weight: 600;
+            color: #34465c;
+        }
+
+        .edit-record-form input,
+        .edit-record-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        .edit-record-form textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .edit-record-form button {
+            margin-top: 10px;
+            padding: 13px;
+            background: #007b8f;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .edit-record-form button:hover {
+            background: #005f70;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007b8f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="edit-record-container">
+
+        <h2>Edit Medical Record</h2>
+
+        <form
+            action="{{ url_for('edit_medical_record', record_id=record['id']) }}"
+            method="POST"
+            class="edit-record-form"
+        >
+
+            <label for="diagnosis">Diagnosis *</label>
+
+            <input
+                type="text"
+                id="diagnosis"
+                name="diagnosis"
+                value="{{ record['diagnosis'] }}"
+                required
+            >
+
+            <label for="treatment">Treatment *</label>
+
+            <textarea
+                id="treatment"
+                name="treatment"
+                required
+            >{{ record['treatment'] }}</textarea>
+
+            <label for="medicines">Medicines</label>
+
+            <textarea
+                id="medicines"
+                name="medicines"
+            >{{ record['medicines'] or '' }}</textarea>
+
+            <label for="notes">Notes</label>
+
+            <textarea
+                id="notes"
+                name="notes"
+            >{{ record['notes'] or '' }}</textarea>
+
+            <label for="record_date">Record Date *</label>
+
+            <input
+                type="date"
+                id="record_date"
+                name="record_date"
+                value="{{ record['record_date'] }}"
+                required
+            >
+
+            <button type="submit">
+                Update Medical Record
+            </button>
+
+        </form>
+
+        <a
+            href="{{ url_for('medical_records') }}"
+            class="back-link"
+        >
+            Back to Medical Records
+        </a>
+
+    </div>
+
+</body>
+</html>

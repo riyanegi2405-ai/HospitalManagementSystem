@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Medical Record - MediCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="medical-container">
+
+    <h1>Add Medical Record</h1>
+    <p>Enter patient medical information</p>
+
+    <form method="POST"
+          action="{{ url_for('add_medical_record') }}">
+
+        <label>Select Patient</label>
+        <select name="patient_id" required>
+            <option value="">Select Patient</option>
+
+            {% for patient in patients %}
+            <option value="{{ patient['id'] }}">
+                {{ patient['name'] }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <label>Select Doctor</label>
+        <select name="doctor_id" required>
+            <option value="">Select Doctor</option>
+
+            {% for doctor in doctors %}
+            <option value="{{ doctor['id'] }}">
+                {{ doctor['name'] }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <label>Diagnosis</label>
+        <input type="text"
+               name="diagnosis"
+               placeholder="Enter diagnosis"
+               required>
+
+        <label>Treatment</label>
+        <textarea name="treatment"
+                  placeholder="Enter treatment details"
+                  required></textarea>
+
+        <label>Medicines</label>
+        <textarea name="medicines"
+                  placeholder="Enter prescribed medicines"></textarea>
+
+        <label>Additional Notes</label>
+        <textarea name="notes"
+                  placeholder="Enter additional notes"></textarea>
+
+        <label>Record Date</label>
+        <input type="date"
+               name="record_date"
+               required>
+
+        <button type="submit">
+            Save Medical Record
+        </button>
+
+    </form>
+
+    <p>
+        <a href="{{ url_for('home') }}">
+            Back to Dashboard
+        </a>
+    </p>
+
+</div>
+
+</body>
+</html>

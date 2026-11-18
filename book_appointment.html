@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Appointment - MediCare</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="form-card">
+    <h1>Book Appointment</h1>
+    <p>Select a patient, available doctor, date and time.</p>
+
+    <form method="POST">
+        <label>Patient</label>
+        <select name="patient_id" required>
+            <option value="">Select Patient</option>
+            {% for patient in patients %}
+            <option value="{{ patient['id'] }}">{{ patient['name'] }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Doctor</label>
+        <select name="doctor_id" required>
+            <option value="">Select Doctor</option>
+            {% for doctor in doctors %}
+            <option value="{{ doctor['id'] }}">
+                {{ doctor['name'] }} - {{ doctor['specialization'] }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <label>Appointment Date</label>
+        <input type="date" name="appointment_date" required>
+
+        <label>Appointment Time</label>
+        <input type="time" name="appointment_time" required>
+
+        <label>Reason for Visit</label>
+        <textarea name="reason" rows="4"></textarea>
+
+        <button type="submit">Book Appointment</button>
+    </form>
+
+    <p><a href="{{ url_for('view_appointments') }}">View Appointments</a></p>
+</div>
+</body>
+</html>

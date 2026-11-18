@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Bill - MediCare</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .bill-container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #176b87;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 16px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 24px;
+            padding: 13px;
+            background: #176b87;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #12566d;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #176b87;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bill-container">
+
+        <h2>Add Patient Bill</h2>
+
+        <form method="POST">
+
+            <label for="patient_id">Select Patient *</label>
+            <select name="patient_id" id="patient_id" required>
+                <option value="">-- Select Patient --</option>
+
+                {% for patient in patients %}
+                    <option value="{{ patient['id'] }}">
+                        {{ patient['name'] }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label for="bill_date">Bill Date *</label>
+            <input
+                type="date"
+                name="bill_date"
+                id="bill_date"
+                required
+            >
+
+            <label for="description">Bill Description *</label>
+            <textarea
+                name="description"
+                id="description"
+                rows="3"
+                placeholder="Example: Consultation Fee"
+                required
+            ></textarea>
+
+            <label for="amount">Amount (₹) *</label>
+            <input
+                type="number"
+                name="amount"
+                id="amount"
+                min="0.01"
+                step="0.01"
+                placeholder="Example: 500"
+                required
+            >
+
+            <label for="payment_status">Payment Status *</label>
+            <select name="payment_status" id="payment_status" required>
+                <option value="Pending">Pending</option>
+                <option value="Paid">Paid</option>
+            </select>
+
+            <button type="submit">Save Bill</button>
+
+        </form>
+
+        <a href="{{ url_for('home') }}" class="back-link">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+</html>
